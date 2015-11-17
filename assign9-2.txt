@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<title>Assignment 8: sql and php - Part 2</title>
+	</head>
+
+	<body>
+
+	<&php
+		DEFINE ('DB_USER', 'z1692069');
+		DEFINE ('DB_PASSWORD', '10081990');
+		DEFINE ('DB_HOST', 'students');
+		DEFINE ('DB_NAME', 'classicmodels');
+
+		$dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
+		or die ('Cannot connect to MySQL:' .mysqli_connect_error());
+
+		mysqli_set_charset($dbc, 'utf8');
+
+		$query = "SELECT officeCode, city FROM Office";
+
+		$result = mysqli_query($dbc, $query);
+
+		if($result)
+		{
+			echo "<ul>";			
+			echo "<form name="database2" action="assign9-2.php" method="POST">
+			echo "<select name="office_info">;
+
+			while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+			{
+				echo '<option value=" ';
+				echo $row["officeCode"];
+				echo ' " > ';
+				echo $row["city"];
+				echo '</option>';
+			}
+			echo '</select>';
+			echo '<br><input type="submit" name="submit" value="Show"> <br>';
+			echo '</form>';
+		}
+		if($_SERVER['REQUEST_METHOD'] == 'POST')
+		{
+			$info = trim($POST['office_info']);
+			$query2 = "SELECT city, lastName, firstName FROM Offices, Employees WHERE Employees.officeCode = Offices.officeCode AND Offices.officeCode = '$info'"; 
+			$result2 = mysqli_query($dbc, $query2);
+			
+			if($result2)
+			{
+				while($row = mysql_fetch_array($result2, MYSQLI_ASSOC))
+				{
+					echo "Employee Name: ";
+					echo $row['firstName'];
+					echo " ";
+					echo $row['lastName'];
+					echo '<br>';
+					echo "City: ";
+					echo $row['city'];
+				}
+			}
+		}
+		mysqli_free_result($result, $result2);
+		mysqli_close($dbc);
+	?>
+	</body>
+	
+	<a href = 
+</html>
+					
+			

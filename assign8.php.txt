@@ -1,0 +1,51 @@
+<html>
+	<body>
+		<h3><center>Grade Calculator II</center></h3>
+		
+		<?php
+			$assigntot = $_REQUEST['assigntot0'];
+			echo "Total assignment points: ";
+
+			$assignpts = $_REQUEST['assignpts0'];
+			echo "Your assignment points: ";
+		
+			$testtot = $_REQUEST['testtot0'];
+			echo "Total test/quiz points: ";
+
+			$testpts = $_REQUEST['testpts0'];
+			echo "Your test/quiz points: ";
+
+			$assign_avg = ($assignpts / $assigntot);
+			$test_avg = ($testpts / $testtot);
+			$final_avg = ((($assign_avg * .40) + ($test_avg * .60)) * 100);
+	
+			echo "Your percentage so far: " . $final_avg;
+			echo "Your letter grade at this point: " . $letter_grade;
+	
+			function getLetterGrade($final_avg, $letter_grade)
+			{
+				if($final_avg == 100 && $final_avg >= 95)
+					return $letter_grade = 'A';
+				else if($final_avg <= 94.9 && $final_avg >= 92)
+					return $letter_grade = 'A-';
+				else if($final_avg <= 91.9 && $final_avg >= 89)
+					return $letter_grade = 'B+';
+				else if($final_avg <= 88.9 && $final_avg >= 86)
+					return $letter_grade = 'B';
+				else if($final_avg <= 85.9 && $final_avg >= 83)
+					return $letter_grade = 'B-';
+				else if($final_avg <= 82.9 && $final_avg >= 79)
+					return $letter_grade = 'C+';
+				else if($final_avg <= 78.9 && $final_avg >= 75)
+					return $letter_grade = 'C';
+				else if($final_avg <= 74.9 && $final_avg >= 70)
+					return $letter_grade = 'C-';
+				else if($final_avg <= 69.9 && $final_avg >= 68)
+					return $letter_grade = 'D';
+				else if($final_avg <= 67)
+					return $letter_grade = 'F';
+			}		
+		?>
+	</body>
+
+</html>
